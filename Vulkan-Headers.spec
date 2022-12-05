@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-Headers
 Version  : 1.3.236
-Release  : 137
+Release  : 138
 URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.236/Vulkan-Headers-1.3.236.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.236/Vulkan-Headers-1.3.236.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,11 @@ License  : Apache-2.0
 Requires: Vulkan-Headers-data = %{version}-%{release}
 Requires: Vulkan-Headers-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
+BuildRequires : gcc-dev32
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libstdc++32
+BuildRequires : glibc-dev32
+BuildRequires : glibc-libc32
 
 %description
 # Vulkan-Headers
@@ -39,6 +44,16 @@ Requires: Vulkan-Headers = %{version}-%{release}
 dev components for the Vulkan-Headers package.
 
 
+%package dev32
+Summary: dev32 components for the Vulkan-Headers package.
+Group: Default
+Requires: Vulkan-Headers-data = %{version}-%{release}
+Requires: Vulkan-Headers-dev = %{version}-%{release}
+
+%description dev32
+dev32 components for the Vulkan-Headers package.
+
+
 %package license
 Summary: license components for the Vulkan-Headers package.
 Group: Default
@@ -56,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1669939186
+export SOURCE_DATE_EPOCH=1670264392
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -70,12 +85,46 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
+mkdir -p clr-build32
+pushd clr-build32
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
+export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
+%cmake -DLIB_INSTALL_DIR:PATH=/usr/lib32 -DCMAKE_INSTALL_LIBDIR=/usr/lib32 -DLIB_SUFFIX=32 ..
+make  %{?_smp_mflags}
+unset PKG_CONFIG_PATH
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1669939186
+export SOURCE_DATE_EPOCH=1670264392
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
-cp %{_builddir}/Vulkan-Headers-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/Vulkan-Headers-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+pushd clr-build32
+%make_install32
+if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
+then
+pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+popd
 pushd clr-build
 %make_install
 popd
@@ -140,6 +189,11 @@ popd
 /usr/include/vulkan/vulkan_xlib_xrandr.h
 /usr/lib64/cmake/VulkanHeaders/VulkanHeadersConfig.cmake
 /usr/lib64/cmake/VulkanHeaders/VulkanHeadersConfigVersion.cmake
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/cmake/VulkanHeaders/VulkanHeadersConfig.cmake
+/usr/lib32/cmake/VulkanHeaders/VulkanHeadersConfigVersion.cmake
 
 %files license
 %defattr(0644,root,root,0755)
