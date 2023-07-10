@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : Vulkan-Headers
-Version  : 1.3.256
-Release  : 158
-URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.256/Vulkan-Headers-1.3.256.tar.gz
-Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.256/Vulkan-Headers-1.3.256.tar.gz
+Version  : 1.3.257
+Release  : 159
+URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.257/Vulkan-Headers-1.3.257.tar.gz
+Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.257/Vulkan-Headers-1.3.257.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -57,15 +57,15 @@ license components for the Vulkan-Headers package.
 
 
 %prep
-%setup -q -n Vulkan-Headers-1.3.256
-cd %{_builddir}/Vulkan-Headers-1.3.256
+%setup -q -n Vulkan-Headers-1.3.257
+cd %{_builddir}/Vulkan-Headers-1.3.257
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1688141420
+export SOURCE_DATE_EPOCH=1689010332
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -117,7 +117,7 @@ unset PKG_CONFIG_PATH
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1688141420
+export SOURCE_DATE_EPOCH=1689010332
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
