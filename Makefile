@@ -1,5 +1,5 @@
 PKG_NAME := Vulkan-Headers
-URL = https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.258/Vulkan-Headers-1.3.258.tar.gz
+URL = https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.259/Vulkan-Headers-1.3.259.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
