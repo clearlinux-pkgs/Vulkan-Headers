@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : Vulkan-Headers
-Version  : 1.3.261
-Release  : 163
-URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.261/Vulkan-Headers-1.3.261.tar.gz
-Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.261/Vulkan-Headers-1.3.261.tar.gz
+Version  : 1.3.262
+Release  : 164
+URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.262/Vulkan-Headers-1.3.262.tar.gz
+Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.262/Vulkan-Headers-1.3.262.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 MIT
@@ -24,10 +24,11 @@ BuildRequires : glibc-libc32
 %define debug_package %{nil}
 
 %description
+<!--
+SPDX-License-Identifier: Apache-2.0
+-->
 # Vulkan-Headers
 Vulkan header files and API registry
-This repository contains Vulkan header files, include files for C and C++,
-and related scripts and tests.
 
 %package data
 Summary: data components for the Vulkan-Headers package.
@@ -57,15 +58,15 @@ license components for the Vulkan-Headers package.
 
 
 %prep
-%setup -q -n Vulkan-Headers-1.3.261
-cd %{_builddir}/Vulkan-Headers-1.3.261
+%setup -q -n Vulkan-Headers-1.3.262
+cd %{_builddir}/Vulkan-Headers-1.3.262
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1691432953
+export SOURCE_DATE_EPOCH=1692982487
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -117,7 +118,7 @@ unset PKG_CONFIG_PATH
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1691432953
+export SOURCE_DATE_EPOCH=1692982487
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-%{version}/LICENSES/Apache-2.0.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
