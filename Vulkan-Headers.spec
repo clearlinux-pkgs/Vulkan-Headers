@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : Vulkan-Headers
-Version  : 1.3.264
-Release  : 166
-URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.264/Vulkan-Headers-1.3.264.tar.gz
-Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.264/Vulkan-Headers-1.3.264.tar.gz
+Version  : 1.3.265
+Release  : 167
+URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.265/Vulkan-Headers-1.3.265.tar.gz
+Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.265/Vulkan-Headers-1.3.265.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 MIT
@@ -58,15 +58,15 @@ license components for the Vulkan-Headers package.
 
 
 %prep
-%setup -q -n Vulkan-Headers-1.3.264
-cd %{_builddir}/Vulkan-Headers-1.3.264
+%setup -q -n Vulkan-Headers-1.3.265
+cd %{_builddir}/Vulkan-Headers-1.3.265
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1694191550
+export SOURCE_DATE_EPOCH=1695658789
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -118,7 +118,7 @@ unset PKG_CONFIG_PATH
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1694191550
+export SOURCE_DATE_EPOCH=1695658789
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-%{version}/LICENSES/Apache-2.0.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
@@ -194,11 +194,13 @@ popd
 /usr/include/vulkan/vulkan_ggp.h
 /usr/include/vulkan/vulkan_handles.hpp
 /usr/include/vulkan/vulkan_hash.hpp
+/usr/include/vulkan/vulkan_hpp_macros.hpp
 /usr/include/vulkan/vulkan_ios.h
 /usr/include/vulkan/vulkan_macos.h
 /usr/include/vulkan/vulkan_metal.h
 /usr/include/vulkan/vulkan_raii.hpp
 /usr/include/vulkan/vulkan_screen.h
+/usr/include/vulkan/vulkan_shared.hpp
 /usr/include/vulkan/vulkan_static_assertions.hpp
 /usr/include/vulkan/vulkan_structs.hpp
 /usr/include/vulkan/vulkan_to_string.hpp
