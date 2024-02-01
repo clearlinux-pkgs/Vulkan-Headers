@@ -6,10 +6,10 @@
 # autospec commit: fae1327
 #
 Name     : Vulkan-Headers
-Version  : 1.3.276
-Release  : 175
-URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.276/Vulkan-Headers-1.3.276.tar.gz
-Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.276/Vulkan-Headers-1.3.276.tar.gz
+Version  : 1.3.277
+Release  : 176
+URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.277/Vulkan-Headers-1.3.277.tar.gz
+Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.277/Vulkan-Headers-1.3.277.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 MIT
@@ -60,15 +60,15 @@ license components for the Vulkan-Headers package.
 
 
 %prep
-%setup -q -n Vulkan-Headers-1.3.276
-cd %{_builddir}/Vulkan-Headers-1.3.276
+%setup -q -n Vulkan-Headers-1.3.277
+cd %{_builddir}/Vulkan-Headers-1.3.277
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1706205986
+export SOURCE_DATE_EPOCH=1706806009
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -152,7 +152,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1706205986
+export SOURCE_DATE_EPOCH=1706806009
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-%{version}/LICENSES/Apache-2.0.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
@@ -202,6 +202,8 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/usr/include/vk_video/vulkan_video_codec_av1std.h
+/usr/include/vk_video/vulkan_video_codec_av1std_decode.h
 /usr/include/vk_video/vulkan_video_codec_h264std.h
 /usr/include/vk_video/vulkan_video_codec_h264std_decode.h
 /usr/include/vk_video/vulkan_video_codec_h264std_encode.h
