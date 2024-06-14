@@ -6,10 +6,10 @@
 # autospec commit: fbcebd0
 #
 Name     : Vulkan-Headers
-Version  : 1.3.287
-Release  : 186
-URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.287/Vulkan-Headers-1.3.287.tar.gz
-Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.287/Vulkan-Headers-1.3.287.tar.gz
+Version  : 1.3.288
+Release  : 187
+URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.288/Vulkan-Headers-1.3.288.tar.gz
+Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.288/Vulkan-Headers-1.3.288.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 MIT
@@ -60,15 +60,15 @@ license components for the Vulkan-Headers package.
 
 
 %prep
-%setup -q -n Vulkan-Headers-1.3.287
-cd %{_builddir}/Vulkan-Headers-1.3.287
+%setup -q -n Vulkan-Headers-1.3.288
+cd %{_builddir}/Vulkan-Headers-1.3.288
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1717778352
+export SOURCE_DATE_EPOCH=1718382605
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -154,7 +154,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1717778352
+export SOURCE_DATE_EPOCH=1718382605
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-%{version}/LICENSES/Apache-2.0.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
